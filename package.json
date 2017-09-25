@@ -23,6 +23,7 @@
   "homepage": "https://github.com/plantain-00/image-pixel-compare#readme",
   "devDependencies": {
     "@types/jasmine": "2.6.0",
+    "autoprefixer": "7.1.4",
     "clean-css-cli": "4.1.10",
     "clean-scripts": "1.2.6",
     "file-uploader-component": "5.1.1",
@@ -38,6 +39,7 @@
     "karma-webpack": "2.0.4",
     "less": "2.7.2",
     "no-unused-export": "1.2.7",
+    "postcss-cli": "4.1.1",
     "puppeteer": "0.11.0",
     "rev-static": "3.4.1",
     "rimraf": "2.6.2",
