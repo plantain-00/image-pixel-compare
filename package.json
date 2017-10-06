@@ -23,7 +23,7 @@
   "homepage": "https://github.com/plantain-00/image-pixel-compare#readme",
   "devDependencies": {
     "@types/jasmine": "2.6.0",
-    "autoprefixer": "7.1.4",
+    "autoprefixer": "7.1.5",
     "clean-css-cli": "4.1.10",
     "clean-scripts": "1.2.6",
     "file-uploader-component": "5.1.1",
@@ -44,7 +44,7 @@
     "rev-static": "3.4.1",
     "rimraf": "2.6.2",
     "standard": "10.0.3",
-    "stylelint": "8.1.1",
+    "stylelint": "8.2.0",
     "stylelint-config-standard": "17.0.0",
     "sw-precache": "5.2.0",
     "tslib": "1.7.1",
