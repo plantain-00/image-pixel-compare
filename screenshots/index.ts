@@ -8,5 +8,15 @@ import * as puppeteer from "puppeteer";
     await page.waitFor(2000);
     await page.screenshot({ path: `screenshots/initial.png`, fullPage: true });
 
+    const fileUploaders = await page.$$("input[type=file]");
+
+    await fileUploaders[0].uploadFile(`./image0.png`);
+    await page.waitFor(2000);
+    await page.screenshot({ path: `screenshots/uploaded-1.png`, fullPage: true });
+
+    await fileUploaders[1].uploadFile(`./image1.png`);
+    await page.waitFor(2000);
+    await page.screenshot({ path: `screenshots/uploaded-2.png`, fullPage: true });
+
     browser.close();
 })();
