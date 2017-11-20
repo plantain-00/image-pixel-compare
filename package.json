@@ -2,7 +2,6 @@
   "name": "image-pixel-compare",
   "version": "1.0.0",
   "description": "A online image pixel compare tool.",
-  "main": "index.js",
   "scripts": {
     "build": "clean-scripts build",
     "lint": "clean-scripts lint",
