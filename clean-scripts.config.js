@@ -7,12 +7,12 @@ const lessFiles = `"*.less"`
 
 const templateCommand = 'file2variable-cli *.template.html -o variables.ts --html-minify'
 const tscCommand = 'tsc'
-const webpackCommand = 'webpack --display-modules'
+const webpackCommand = 'webpack'
 const revStaticCommand = 'rev-static'
 const cssCommand = [
   'lessc index.less > index.css',
   `postcss index.css -o index.postcss.css`,
-  'cleancss -o index.bundle.css index.postcss.css ./node_modules/github-fork-ribbon-css/gh-fork-ribbon.css ./node_modules/file-uploader-component/file-uploader.min.css'
+  'cleancss -o index.bundle.css index.postcss.css ./node_modules/github-fork-ribbon-css/gh-fork-ribbon.css ./node_modules/file-uploader-component/dist/file-uploader.min.css'
 ]
 const swCommand = [
   'sw-precache --config sw-precache.config.js --verbose',

@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Component from "vue-class-component";
-import "file-uploader-component/vue";
+import "file-uploader-vue-component";
 import { indexTemplateHtml } from "./variables";
 
 @Component({
