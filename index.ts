@@ -4,9 +4,9 @@ import "file-uploader-vue-component";
 import { indexTemplateHtml } from "./variables";
 
 @Component({
-    template: indexTemplateHtml,
+    render: indexTemplateHtml,
 })
-class App extends Vue {
+export class App extends Vue {
     color = "#ff0000";
 
     private leftCanvasContext: CanvasRenderingContext2D | null = null;
