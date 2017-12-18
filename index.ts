@@ -1,10 +1,11 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import "file-uploader-vue-component";
-import { indexTemplateHtml } from "./variables";
+import { indexTemplateHtml, indexTemplateHtmlStatic } from "./variables";
 
 @Component({
     render: indexTemplateHtml,
+    staticRenderFns: indexTemplateHtmlStatic,
 })
 export class App extends Vue {
     color = "#ff0000";
