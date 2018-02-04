@@ -3,7 +3,7 @@
  * It is not mean to be edited by hand
  */
 // tslint:disable
-import { App } from "./index";
+import { App } from "./index"
 
 // @ts-ignore
 export function indexTemplateHtml(this: App) {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.color),expression:"color"}],attrs:{"type":"color"},domProps:{"value":(_vm.color)},on:{"input":function($event){if($event.target.composing){ return; }_vm.color=$event.target.value}}}),_vm._v(" "),_c('button',{on:{"click":function($event){_vm.compare()}}},[_vm._v("compare")]),_vm._v(" "),_c('div',{staticClass:"images"},[_c('div',{staticClass:"left"},[_c('file-uploader',{attrs:{"accept":"image/*"},on:{"file-uploaded":function($event){_vm.leftFileUploaded($event)},"file-got":function($event){_vm.leftFileGot($event)}}}),_vm._v(" "),_c('canvas',{ref:"leftCanvas"})],1),_vm._v(" "),_c('div',{staticClass:"right"},[_c('file-uploader',{attrs:{"accept":"image/*"},on:{"file-uploaded":function($event){_vm.rightFileUploaded($event)},"file-got":function($event){_vm.rightFileGot($event)}}}),_vm._v(" "),_c('canvas',{ref:"rightCanvas"})],1)])])}
