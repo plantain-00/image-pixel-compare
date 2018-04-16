@@ -45,8 +45,7 @@ module.exports = {
   },
   test: [
     'tsc -p spec',
-    'karma start spec/karma.config.js',
-    () => checkGitStatus()
+    'karma start spec/karma.config.js'
   ],
   fix: {
     ts: `tslint --fix ${tsFiles}`,
