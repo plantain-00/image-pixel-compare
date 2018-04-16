@@ -1,9 +1,11 @@
-const { Service, checkGitStatus, executeScriptAsync } = require('clean-scripts')
+const { Service, executeScriptAsync } = require('clean-scripts')
 const { watch } = require('watch-then-execute')
 
 const tsFiles = `"*.ts" "spec/**/*.ts" "screenshots/**/*.ts" "prerender/**/*.ts"`
 const jsFiles = `"*.config.js" "spec/**/*.config.js"`
 const lessFiles = `"*.less"`
+
+const isDev = process.env.NODE_ENV === 'development'
 
 const templateCommand = 'file2variable-cli --config file2variable.config.js'
 const tscCommand = 'tsc'
@@ -14,7 +16,7 @@ const cssCommand = [
   `postcss index.css -o index.postcss.css`,
   'cleancss -o index.bundle.css index.postcss.css ./node_modules/github-fork-ribbon-css/gh-fork-ribbon.css ./node_modules/file-uploader-component/dist/file-uploader.min.css'
 ]
-const swCommand = [
+const swCommand = isDev ? undefined : [
   'sw-precache --config sw-precache.config.js --verbose',
   'uglifyjs service-worker.js -o service-worker.bundle.js'
 ]
