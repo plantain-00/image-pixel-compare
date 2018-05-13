@@ -17,7 +17,7 @@ export class App extends Vue {
   private rightWidth = 0
   private rightHeight = 0
 
-  leftFileGot (file: File | Blob) {
+  leftFileGot(file: File | Blob) {
     const reader = new FileReader()
     reader.onload = e => {
       const image = new Image()
@@ -36,7 +36,7 @@ export class App extends Vue {
     reader.readAsDataURL(file)
   }
 
-  rightFileGot (file: File | Blob) {
+  rightFileGot(file: File | Blob) {
     const reader = new FileReader()
     reader.onload = e => {
       const image = new Image()
@@ -55,7 +55,7 @@ export class App extends Vue {
     reader.readAsDataURL(file)
   }
 
-  compare () {
+  compare() {
     if (this.leftCanvasContext === null || this.rightCanvasContext === null) {
       return
     }
@@ -69,9 +69,9 @@ export class App extends Vue {
     const green = parseInt(this.color.substring(5), 16)
     for (let i = 0; i < totalPixelCount; i += 4) {
       if (leftData[i] !== rightData[i]
-                || leftData[i + 1] !== rightData[i + 1]
-                || leftData[i + 2] !== rightData[i + 2]
-                || leftData[i + 3] !== rightData[i + 3]) {
+        || leftData[i + 1] !== rightData[i + 1]
+        || leftData[i + 2] !== rightData[i + 2]
+        || leftData[i + 3] !== rightData[i + 3]) {
         rightData[i] = red
         rightData[i + 1] = blue
         rightData[i + 2] = green
