@@ -31,7 +31,7 @@ export class App extends Vue {
         this.leftCanvasContext.drawImage(image, 0, 0, this.leftWidth, this.leftHeight)
         this.compare()
       }
-      image.src = (e.target as FileReader).result
+      image.src = (e.target as FileReader).result as string
     }
     reader.readAsDataURL(file)
   }
@@ -50,7 +50,7 @@ export class App extends Vue {
         this.rightCanvasContext.drawImage(image, 0, 0, this.rightWidth, this.rightHeight)
         this.compare()
       }
-      image.src = (e.target as FileReader).result
+      image.src = (e.target as FileReader).result as string
     }
     reader.readAsDataURL(file)
   }
