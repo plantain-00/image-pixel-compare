@@ -9,13 +9,74 @@ import { indexTemplateHtml, indexTemplateHtmlStatic } from './variables'
 })
 export class App extends Vue {
   color = '#ff0000'
+  leftFileName = ''
+  rightFileName = ''
+
+  get position() {
+    if (this.mousePosition.length === 0) {
+      return ''
+    }
+    return `(${this.mousePosition[0]}, ${this.mousePosition[1]})`
+  }
+  get leftPixelInfo() {
+    if (this.leftPixel.length === 0) {
+      return ''
+    }
+    return `rgba(${this.leftPixel[0]}, ${this.leftPixel[1]}, ${this.leftPixel[2]}, ${this.leftPixel[3]})`
+  }
+  get rightPixelInfo() {
+    if (this.rightPixel.length === 0) {
+      return ''
+    }
+    return `rgba(${this.rightPixel[0]}, ${this.rightPixel[1]}, ${this.rightPixel[2]}, ${this.rightPixel[3]})`
+  }
 
   private leftCanvasContext: CanvasRenderingContext2D | null = null
-  private leftWidth = 0
-  private leftHeight = 0
+  private leftImage?: HTMLImageElement
+  private leftRawImageData?: ImageData
+
   private rightCanvasContext: CanvasRenderingContext2D | null = null
-  private rightWidth = 0
-  private rightHeight = 0
+  private rightImage?: HTMLImageElement
+  private rightRawImageData?: ImageData
+
+  private mousePosition: number[] = []
+  private leftPixel: number[] = []
+  private rightPixel: number[] = []
+
+  onLeftMouseMove(e: MouseEvent) {
+    const canvas = this.$refs.leftCanvas as HTMLCanvasElement
+    const rect = canvas.getBoundingClientRect()
+    this.mousePosition = [e.clientX - rect.left, e.clientY - rect.top]
+    this.updatePixelInfo()
+  }
+
+  onRightMouseMove(e: MouseEvent) {
+    const canvas = this.$refs.rightCanvas as HTMLCanvasElement
+    const rect = canvas.getBoundingClientRect()
+    this.mousePosition = [e.clientX - rect.left, e.clientY - rect.top]
+    this.updatePixelInfo()
+  }
+
+  private updatePixelInfo() {
+    if (this.leftRawImageData && this.leftImage) {
+      const index = (this.mousePosition[1] * this.leftImage.width + this.mousePosition[0]) * 4
+      this.leftPixel = [
+        this.leftRawImageData.data[index],
+        this.leftRawImageData.data[index + 1],
+        this.leftRawImageData.data[index + 2],
+        this.leftRawImageData.data[index + 3]
+      ]
+    }
+    if (this.rightRawImageData && this.rightImage) {
+      const index = (this.mousePosition[1] * this.rightImage.width + this.mousePosition[0]) * 4
+      this.rightPixel = [
+        this.rightRawImageData.data[index],
+        this.rightRawImageData.data[index + 1],
+        this.rightRawImageData.data[index + 2],
+        this.rightRawImageData.data[index + 3]
+      ]
+    }
+  }
 
   leftFileGot(file: File | Blob) {
     const reader = new FileReader()
@@ -23,12 +84,13 @@ export class App extends Vue {
       const image = new Image()
       image.onload = () => {
         const canvas = this.$refs.leftCanvas as HTMLCanvasElement
-        this.leftWidth = image.width
-        this.leftHeight = image.height
-        canvas.width = this.leftWidth
-        canvas.height = this.leftHeight
+        this.leftFileName = (file as File).name
+        canvas.width = image.width
+        canvas.height = image.height
+        this.leftImage = image
         this.leftCanvasContext = canvas.getContext('2d')!
-        this.leftCanvasContext.drawImage(image, 0, 0, this.leftWidth, this.leftHeight)
+        this.leftCanvasContext.drawImage(image, 0, 0, image.width, image.height)
+        this.leftRawImageData = this.leftCanvasContext.getImageData(0, 0, image.width, image.height)
         this.compare()
       }
       image.src = (e.target as FileReader).result as string
@@ -42,12 +104,13 @@ export class App extends Vue {
       const image = new Image()
       image.onload = () => {
         const canvas = this.$refs.rightCanvas as HTMLCanvasElement
-        this.rightWidth = image.width
-        this.rightHeight = image.height
-        canvas.width = this.rightWidth
-        canvas.height = this.rightHeight
+        this.rightFileName = (file as File).name
+        canvas.width = image.width
+        canvas.height = image.height
+        this.rightImage = image
         this.rightCanvasContext = canvas.getContext('2d')!
-        this.rightCanvasContext.drawImage(image, 0, 0, this.rightWidth, this.rightHeight)
+        this.rightCanvasContext.drawImage(image, 0, 0, image.width, image.height)
+        this.rightRawImageData = this.rightCanvasContext.getImageData(0, 0, image.width, image.height)
         this.compare()
       }
       image.src = (e.target as FileReader).result as string
@@ -56,12 +119,13 @@ export class App extends Vue {
   }
 
   compare() {
-    if (this.leftCanvasContext === null || this.rightCanvasContext === null) {
+    if (this.leftCanvasContext === null || this.rightCanvasContext === null || !this.leftImage || !this.rightImage) {
       return
     }
-    const minWidth = Math.min(this.leftWidth, this.rightWidth)
-    const minHeight = Math.min(this.leftHeight, this.rightHeight)
+    const minWidth = Math.min(this.leftImage.width, this.rightImage.width)
+    const minHeight = Math.min(this.leftImage.height, this.rightImage.height)
     const leftData = this.leftCanvasContext.getImageData(0, 0, minWidth, minHeight).data
+    this.rightCanvasContext.drawImage(this.rightImage, 0, 0, this.rightImage.width, this.rightImage.height)
     const rightData = this.rightCanvasContext.getImageData(0, 0, minWidth, minHeight).data
     const totalPixelCount = 4 * minWidth * minHeight
     const red = parseInt(this.color.substring(1, 3), 16)
