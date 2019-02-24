@@ -7,14 +7,16 @@
                 @file-got="leftFileGot($event)"
                 accept="image/*">
             </file-uploader>
-            <canvas ref="leftCanvas"></canvas>
+            <div>{{leftFileName}} {{position}} {{leftPixelInfo}}</div>
+            <canvas ref="leftCanvas" @mousemove="onLeftMouseMove($event)"></canvas>
         </div>
         <div class="right">
             <file-uploader @file-uploaded="rightFileUploaded($event)"
                 @file-got="rightFileGot($event)"
                 accept="image/*">
             </file-uploader>
-            <canvas ref="rightCanvas"></canvas>
+            <div>{{rightFileName}} {{position}} {{rightPixelInfo}}</div>
+            <canvas ref="rightCanvas" @mousemove="onRightMouseMove($event)"></canvas>
         </div>
     </div>
 </div>
