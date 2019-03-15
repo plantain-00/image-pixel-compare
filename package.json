@@ -28,9 +28,9 @@
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
-    "@types/jasmine": "3.3.9",
-    "@types/puppeteer": "1.12.2",
-    "autoprefixer": "9.4.10",
+    "@types/jasmine": "3.3.10",
+    "@types/puppeteer": "1.12.3",
+    "autoprefixer": "9.5.0",
     "clean-css-cli": "4.2.1",
     "clean-scripts": "1.9.2",
     "cross-env": "5.2.0",
@@ -57,16 +57,16 @@
     "sw-precache": "5.2.1",
     "ts-loader": "5.3.3",
     "tslib": "1.9.3",
-    "tslint": "5.13.1",
+    "tslint": "5.14.0",
     "tslint-config-standard": "8.0.1",
     "tslint-sonarts": "1.9.0",
     "type-coverage": "1.10.0",
     "typescript": "3.3.1",
     "uglify-js": "3",
-    "vue": "2.6.8",
+    "vue": "2.6.9",
     "vue-class-component": "7.0.1",
     "watch-then-execute": "1.1.1",
     "webpack": "4.29.6",
-    "webpack-cli": "3.2.3"
+    "webpack-cli": "3.3.0"
   }
 }
