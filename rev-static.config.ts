@@ -1,6 +1,4 @@
-const fs = require('fs')
-
-module.exports = {
+export default {
   inputFiles: [
     '*.bundle.js',
     '*.bundle.css',
@@ -15,15 +13,14 @@ module.exports = {
     'index.bundle.js',
     'index.bundle.css'
   ],
-  outputFiles: file => file.replace('.ejs', ''),
+  outputFiles: (file: string) => file.replace('.ejs', ''),
   ejsOptions: {
     rmWhitespace: true
   },
   sha: 256,
-  customNewFileName: (filePath, fileString, md5String, baseName, extensionName) => baseName + '-' + md5String + extensionName,
+  customNewFileName: (_filePath: string, _fileString: string, md5String: string, baseName: string, extensionName: string) => baseName + '-' + md5String + extensionName,
   fileSize: 'file-size.json',
   context: {
-    prerender: fs.readFileSync('prerender/index.html'),
     buildMoment: new Date().toString()
   }
 }
