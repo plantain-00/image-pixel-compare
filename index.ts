@@ -22,13 +22,13 @@ export class App extends Vue {
     if (this.leftPixel.length === 0) {
       return ''
     }
-    return `rgba(${this.leftPixel[0]}, ${this.leftPixel[1]}, ${this.leftPixel[2]}, ${this.leftPixel[3]})`
+    return `${getRgba(this.leftPixel)} ${getHex(this.leftPixel)}`
   }
   get rightPixelInfo() {
     if (this.rightPixel.length === 0) {
       return ''
     }
-    return `rgba(${this.rightPixel[0]}, ${this.rightPixel[1]}, ${this.rightPixel[2]}, ${this.rightPixel[3]})`
+    return `${getRgba(this.rightPixel)} ${getHex(this.rightPixel)}`
   }
 
   private leftCanvasContext: CanvasRenderingContext2D | null = null
@@ -146,3 +146,16 @@ export class App extends Vue {
 }
 
 new App({ el: '#container' })
+
+function formatColor(value: number) {
+  const result = value.toString(16)
+  return result.length === 2 ? result : '0' + result
+}
+
+function getHex(value: number[]) {
+  return `#${formatColor(value[0])}${formatColor(value[1])}${formatColor(value[2])}`
+}
+
+function getRgba(value: number[]) {
+  return `rgba(${value[0]}, ${value[1]}, ${value[2]}, ${value[3]})`
+}
