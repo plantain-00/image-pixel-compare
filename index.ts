@@ -30,6 +30,20 @@ export class App extends Vue {
     }
     return `${getRgba(this.rightPixel)} ${getHex(this.rightPixel)}`
   }
+  get leftStyle() {
+    return {
+      fontFamily: 'monospace',
+      backgroundColor: getRgba(this.leftPixel),
+      color: this.leftPixel.length === 0 ? undefined : getColor(this.leftPixel)
+    }
+  }
+  get rightStyle() {
+    return {
+      fontFamily: 'monospace',
+      backgroundColor: getRgba(this.rightPixel),
+      color: this.rightPixel.length === 0 ? undefined : getColor(this.rightPixel)
+    }
+  }
 
   private leftCanvasContext: CanvasRenderingContext2D | null = null
   private leftImage?: HTMLImageElement
@@ -158,4 +172,8 @@ function getHex(value: number[]) {
 
 function getRgba(value: number[]) {
   return `rgba(${value[0]}, ${value[1]}, ${value[2]}, ${value[3]})`
+}
+
+function getColor(value: number[]) {
+  return value[0] + value[1] + value[2] < 383 ? 'white' : 'black'
 }
