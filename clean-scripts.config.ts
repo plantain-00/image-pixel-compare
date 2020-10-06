@@ -37,7 +37,7 @@ export default {
     less: `stylelint ${lessFiles}`,
     export: `no-unused-export ${tsFiles} ${lessFiles}`,
     markdown: `markdownlint README.md`,
-    typeCoverage: 'type-coverage -p . --strict'
+    typeCoverage: 'type-coverage -p . --strict --ignore-files variables.ts'
   },
   test: [
   ],
