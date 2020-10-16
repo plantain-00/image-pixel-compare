@@ -23,8 +23,8 @@ export function indexTemplateHtml(_ctx, _cache) {
     _createVNode("div", { class: "images" }, [
       _createVNode("div", { class: "left" }, [
         _createVNode(_component_file_uploader, {
-          "onFile-uploaded": _cache[3] || (_cache[3] = $event => (_ctx.leftFileUploaded($event))),
-          "onFile-got": _cache[4] || (_cache[4] = $event => (_ctx.leftFileGot($event))),
+          onFileUploaded: _cache[3] || (_cache[3] = $event => (_ctx.leftFileUploaded($event))),
+          onFileGot: _cache[4] || (_cache[4] = $event => (_ctx.leftFileGot($event))),
           accept: "image/*"
         }),
         _createVNode("div", { class: "header" }, [
@@ -43,8 +43,8 @@ export function indexTemplateHtml(_ctx, _cache) {
       ]),
       _createVNode("div", { class: "right" }, [
         _createVNode(_component_file_uploader, {
-          "onFile-uploaded": _cache[6] || (_cache[6] = $event => (_ctx.rightFileUploaded($event))),
-          "onFile-got": _cache[7] || (_cache[7] = $event => (_ctx.rightFileGot($event))),
+          onFileUploaded: _cache[6] || (_cache[6] = $event => (_ctx.rightFileUploaded($event))),
+          onFileGot: _cache[7] || (_cache[7] = $event => (_ctx.rightFileGot($event))),
           accept: "image/*"
         }),
         _createVNode("div", { class: "header" }, [
