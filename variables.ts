@@ -13,7 +13,7 @@ export function indexTemplateHtml(_ctx, _cache) {
   return (_openBlock(), _createElementBlock("div", null, [
     _withDirectives(_createElementVNode("input", {
       type: "color",
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => (_ctx.color = $event))
+      "onUpdate:modelValue": _cache[0] || (_cache[0] = $event => ((_ctx.color) = $event))
     }, null, 512 /* NEED_PATCH */), [
       [_vModelText, _ctx.color]
     ]),
